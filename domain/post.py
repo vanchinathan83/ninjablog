@@ -9,6 +9,5 @@ class Post:
 		self.author = author
 
 	def get_json_string(self):
-		print json.dumps(self.__dict__)
 		return json.dumps(self.__dict__)
 

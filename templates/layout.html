@@ -1,17 +1,18 @@
 <!doctype html>
+{% macro input(name,value='',type='text',size=20) -%}
+  <input type="{{ type }}" name="{{ name }}" value = "{{ value }}",size = "{{ size }}">
+{%- endmacro %}
+
 <title>Flaskr</title>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 <div class=page>
       <h1>Flaskr</h1>
       <div class=metanav>
-        {#
-        {% if not session.logged_in %}
+        {% if not session.get('logged_in') %}
             <a href="{{ url_for('login') }}">log in</a>
         {% else %}
              <a href="{{ url_for('logout') }}">log out</a>
         {% endif %}
-        #}
-        <a href="/"> Log In </a>
     
     </div>
     {% block body %}{% endblock %}
