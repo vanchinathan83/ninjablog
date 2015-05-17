@@ -2,17 +2,15 @@
 
 
 {% block body %}
-    {% if posts %}
-        {% for post in posts %}
+    {% if post %}
         <b> {{ post.title }}</b>
         <div>
-            <p> {{ post.content[:10] }} <a href='/posts/{{post._id}}'>Read More</a> </p>
+            <p> {{ post.content }} </p>
             Tags : <span> {% for tag in post.tags %} {{ tag }} {% endfor %} </span><br/>
             Author : <span> {{ post.author }} </span>
         </div>
         <br/>
-        {% endfor %}
     {% else %}
-        <b color='red'> No Posts found!! </b>
+        <b color='red'> No Posts found with the given ID!! </b>
     {% endif %}
 {% endblock %}

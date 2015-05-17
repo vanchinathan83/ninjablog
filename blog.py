@@ -72,9 +72,7 @@ Something to think about
 @app.route('/posts/<post_id>')
 def posts(post_id):
     post = mongo.db.posts.find_one_or_404({'_id':ObjectId(post_id)})
-    posts = []
-    posts.append(post)
-    return render_template('index.html', posts = posts)
+    return render_template('view.html', post = post)
 
 def show_the_login_form():
     return render_template('login.html')

@@ -3,10 +3,10 @@
   <input type="{{ type }}" name="{{ name }}" value = "{{ value }}",size = "{{ size }}">
 {%- endmacro %}
 
-<title>Flaskr</title>
+<title>Vanchinathan's Blog</title>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 <div class=page>
-      <h1>Flaskr</h1>
+      <h1>Vanchinathan's Blog</h1>
       <div class=metanav>
         {% if not session.get('logged_in') %}
             <a href="{{ url_for('login') }}">log in</a>
