@@ -1,7 +1,8 @@
-from flask import Flask,render_template,request,redirect,session,url_for
+from flask import Flask,render_template,request,redirect,session,url_for,flash
 from flask.ext.pymongo import PyMongo
 from bson import ObjectId
 from domain import post
+from passlib.apps import custom_app_context as pwd_context
 import json
 
 app = Flask(__name__)
@@ -34,15 +35,22 @@ def add_post():
             mongo.db.posts.insert(json.loads(blog_post.get_json_string()))
             return redirect('/')
         else:
-            redirect(url_for('login'))
+            return redirect(url_for('login'))
 
 @app.route('/login/',methods=['GET','POST'])
 def login():
     if request.method == 'GET':
         return show_the_login_form()
     else:
-        session['logged_in'] = True
-        return redirect('/')
+        user = mongo.db.users.find_one_or_404({'user_name' : request.form['username']})
+        password = request.form['pswd']
+        salted_password = password + user['salt']
+        if pwd_context.verify(salted_password,user['password']):
+            print 'logged IN'
+            session['logged_in'] = True
+            return redirect('/')
+        else:
+            return redirect(url_for('login'))
 
 @app.route('/logout/',methods=['GET'])
 def logout():
