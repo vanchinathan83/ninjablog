@@ -1,6 +1,6 @@
 <!doctype html>
-{% macro input(name,value='',type='text',size=20) -%}
-  <input type="{{ type }}" name="{{ name }}" value = "{{ value }}",size = "{{ size }}">
+{% macro input(name,placeholdertext='placeholder-text',value='',type='text',size=20) -%}
+  <input type="{{ type }}" class="form-control" name="{{ name }}" value = "{{ value }}" placeholder="{{ placeholdertext }}" ,size = "{{ size }}">
 {%- endmacro %}
 
 <meta charset="utf-8">
