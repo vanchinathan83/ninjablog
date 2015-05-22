@@ -4,6 +4,7 @@ from bson import ObjectId
 from domain import post
 from passlib.apps import custom_app_context as pwd_context
 import json
+import re
 
 app = Flask(__name__)
 app.secret_key = "thisisverysecret"
@@ -17,6 +18,13 @@ Might add more restrictions as we go forward
 def index():
     posts = mongo.db.posts.find()
     return render_template('index.html',posts=posts)
+
+@app.route('/search', methods = ['GET'])
+def search():
+    search_str = request.args.get('search')
+    search_regex = re.compile("^"+search_str, re.IGNORECASE)
+    posts = mongo.db.posts.find({"title" : search_regex})
+    return render_template('search.html',posts=posts)
 
 '''Create a post
 No Validations has been added so far. 
