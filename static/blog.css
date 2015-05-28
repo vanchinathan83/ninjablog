@@ -1,12 +1,30 @@
 body {
-	font-size: 15px;
-	font-family: "comic-sans";
-	line-height: 1;
+	line-height: 2;
 }
 
 .post {
+	font-size: 18px;
+	font-family: Montserrat,"Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	margin: 25px;
+	word-wrap: break-word;
+	color:#677684;
+}
+
+.post .title {
+	font-size:30px;
+	font-weight: bold;
+}
+
+.tagtext {
+	color: #db3c14;
 	font-family: "comic-sans";
+	font-weight: 12px;
+	margin: 10px 1px 10px 1px;
 }
-.title {
-	font-size: 20px;
+
+.authortext {
+	color:#45a6cc;
+	font-weight: 12px;
 }
+
