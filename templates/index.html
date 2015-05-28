@@ -7,7 +7,7 @@
         <div class="post">
             <span class="title"> {{ post.title }}</span>
             <div class="content">
-                <p> {{ post.content[:10] }} <a href='/posts/{{post._id}}'>Read More</a> </p>
+                <p> {{ post.content[:200] }} <a href='/posts/{{post._id}}'>Read More</a> </p>
                 Tags : <span> {% for tag in post.tags %} {{ tag }} {% endfor %} </span><br/>
                 Author : <span> {{ post.author }} </span>
             </div>
