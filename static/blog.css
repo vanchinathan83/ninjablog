@@ -6,7 +6,7 @@ body {
 	font-size: 18px;
 	font-family: Montserrat,"Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: normal;
-	margin: 25px;
+	margin: 25 0 0 25;
 	word-wrap: break-word;
 	color:#677684;
 }
@@ -28,3 +28,15 @@ body {
 	font-weight: 12px;
 }
 
+.bg {
+	background-color: #43AA8B;
+	color:white;
+}
+
+.footer {
+	font-weight: italic;
+	font-size:10px;
+	text-align: center;
+	margin-top: 25px;
+	background-color: 
+}

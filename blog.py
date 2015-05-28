@@ -22,8 +22,8 @@ def index():
 @app.route('/search', methods = ['GET'])
 def search():
     search_str = request.args.get('search')
-    search_regex = re.compile("^"+search_str, re.IGNORECASE)
-    posts = mongo.db.posts.find({"title" : search_regex})
+    search_regex = re.compile(search_str, re.IGNORECASE)
+    posts = mongo.db.posts.find({'title' : { '$regex': search_regex}})
     return render_template('search.html',posts=posts)
 
 '''Create a post
