@@ -81,7 +81,7 @@ Something to think about
 def posts(post_id):
     if request.method == 'GET':
         if '_method' in request.args:
-            return redirect('/')
+            return ('', 200)
         post = mongo.db.posts.find_one_or_404({'_id':ObjectId(post_id)})
         return render_template('view.html', post = post)
     else:
