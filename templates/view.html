@@ -5,8 +5,8 @@
     {% if post %}
          <div class="post">
             <span class="title"> {{ post.title | safe }}</span>
-             <div class="admin-remove glyphicon glyphicon-remove">Remove</div>
-            <div class="admin-edit glyphicon glyphicon-pencil">Edit</div>
+             <div class="admin-remove glyphicon glyphicon-remove"><a href="#">Remove</a></div>
+            <div class="admin-edit glyphicon glyphicon-pencil"><a href="?_method=EDIT">Edit</a></div>
             <input type="hidden" value={{ post._id }} id="post-id"/>
             <div class="content">
                 <p> {{ post.content | safe }}</p>

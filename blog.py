@@ -81,7 +81,10 @@ Something to think about
 def posts(post_id):
     if request.method == 'GET':
         if '_method' in request.args:
-            return ('', 200)
+            if request.args['_method'] == 'DELETE':
+                return ('', 200)
+            elif request.args['_method'] == 'EDIT':
+                return show_the_post_form()
         post = mongo.db.posts.find_one_or_404({'_id':ObjectId(post_id)})
         return render_template('view.html', post = post)
     else:
