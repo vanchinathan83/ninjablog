@@ -33,6 +33,15 @@ body {
 	color:white;
 }
 
+.admin-edit {
+	margin-left: 10px;
+}
+
+.admin-remove {
+	margin-left: 10px;
+}
+
+
 .footer {
 	font-weight: italic;
 	font-size:10px;

@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request,redirect,session,url_for,flash
+from flask import Flask,render_template,request,redirect,session,url_for,flash,jsonify
 from flask.ext.pymongo import PyMongo
 from bson import ObjectId
 from domain import post
@@ -77,10 +77,15 @@ def about_me():
 How can I get rid of mongo id's in URL???
 Something to think about
 '''
-@app.route('/posts/<post_id>')
+@app.route('/posts/<post_id>', methods=['GET'])
 def posts(post_id):
-    post = mongo.db.posts.find_one_or_404({'_id':ObjectId(post_id)})
-    return render_template('view.html', post = post)
+    if request.method == 'GET':
+        if '_method' in request.args:
+            return redirect('/')
+        post = mongo.db.posts.find_one_or_404({'_id':ObjectId(post_id)})
+        return render_template('view.html', post = post)
+    else:
+        return redirect('/')
 
 def show_the_login_form():
     return render_template('login.html')

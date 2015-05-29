@@ -5,6 +5,9 @@
     {% if post %}
          <div class="post">
             <span class="title"> {{ post.title | safe }}</span>
+             <div class="admin-remove glyphicon glyphicon-remove">Remove</div>
+            <div class="admin-edit glyphicon glyphicon-pencil">Edit</div>
+            <input type="hidden" value={{ post._id }} id="post-id"/>
             <div class="content">
                 <p> {{ post.content | safe }}</p>
                 Tags : {% for tag in post.tags %} <span class="btn btn-default tagtext">{{ tag }} </span>{% endfor %}<br/>
