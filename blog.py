@@ -45,6 +45,11 @@ def add_post():
         else:
             return redirect(url_for('login'))
 
+@app.route('/posts/<post_id>/edit', methods=['GET'])
+def edit_posts(post_id):
+    post = mongo.db.posts.find_one_or_404({'_id': ObjectId(post_id)})
+    return render_template('edit.html',post = post)
+
 @app.route('/login/',methods=['GET','POST'])
 def login():
     if request.method == 'GET':
@@ -54,7 +59,6 @@ def login():
         password = request.form['pswd']
         salted_password = password + user['salt']
         if pwd_context.verify(salted_password,user['password']):
-            print 'logged IN'
             session['logged_in'] = True
             return redirect('/')
         else:

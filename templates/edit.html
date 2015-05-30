@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block body %}
+	<b> Edit Post </b>
+	{% if post %}
+		<form action='/posts/' method='PUT'>
+	    	<p> {{ input(post.title, "",post.title ) }} </p>
+	    	<p> {{ input('content',"",post.content, size=200) }} </p>
+	    	<p> {{ input('tags', "", post.tags ) }} </p>
+	    	<p> {{ input('author', "",post.author ) }} </p>  
+	    	<p> <input type="submit" value="Post"></p>
+		</form>
+	{% endif %}
+{% endblock %}
