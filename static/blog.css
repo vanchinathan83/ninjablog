@@ -11,6 +11,10 @@ body {
 	color:#677684;
 }
 
+.delete-confirm {
+	color:red;
+}
+
 .post .title {
 	font-size:30px;
 	font-weight: bold;

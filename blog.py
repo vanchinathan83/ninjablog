@@ -77,16 +77,14 @@ def about_me():
 How can I get rid of mongo id's in URL???
 Something to think about
 '''
-@app.route('/posts/<post_id>', methods=['GET'])
+@app.route('/posts/<post_id>', methods=['GET','DELETE'])
 def posts(post_id):
     if request.method == 'GET':
-        if '_method' in request.args:
-            if request.args['_method'] == 'DELETE':
-                return ('', 200)
-            elif request.args['_method'] == 'EDIT':
-                return show_the_post_form()
         post = mongo.db.posts.find_one_or_404({'_id':ObjectId(post_id)})
         return render_template('view.html', post = post)
+    elif request.method == 'DELETE':
+        mongo.db.posts.remove({ '_id' : ObjectId(post_id)})
+        return render_template('display_message.html', message = "The post with id : " + post_id + " has been deleted!!")
     else:
         return redirect('/')
 

@@ -13,6 +13,9 @@
                 Tags : {% for tag in post.tags %} <span class="btn btn-default tagtext">{{ tag }} </span>{% endfor %}<br/>
                 Author : <span class="btn btn-default authortext"> {{ post.author }} </span>
             </div>
+            <div id="delete-confirm" title="Delete the post?">
+              <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>The post will be deleted!!. Are you sure?</p>
+            </div>
         </div>
     {% else %}
         <b color='red'> No Posts found with the given ID!! </b>
