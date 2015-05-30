@@ -83,8 +83,14 @@ def posts(post_id):
         post = mongo.db.posts.find_one_or_404({'_id':ObjectId(post_id)})
         return render_template('view.html', post = post)
     elif request.method == 'DELETE':
-        mongo.db.posts.remove({ '_id' : ObjectId(post_id)})
-        return render_template('display_message.html', message = "The post with id : " + post_id + " has been deleted!!")
+        try:
+            result = mongo.db.posts.remove({ '_id' : ObjectId(post_id)})
+            if result and result.get("err") == None:
+                return render_template('display_message.html', message = "The post with id : " + post_id + " has been deleted!!")
+            else:
+                return render_template('display_message.html', message = "There was an error deleting the post with id : " + post_id)
+        except:
+            return render_template('display_message.html', message = "There was an error deleting the post with id : " + post_id)
     else:
         return redirect('/')
 
