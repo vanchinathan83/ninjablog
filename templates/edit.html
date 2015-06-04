@@ -3,7 +3,7 @@
 {% block body %}
 	<b> Edit Post </b>
 	{% if post %}
-		<form action='/posts/' method='PUT'>
+		<form action='/posts/' method='POST'>
 	    	<p> {{ input('title', 'text',post.title ) }} </p>
 	    	<p> {{ input('content','text',post.content, size=200) }} </p>
 	    	<p> {{ input('tags', 'text', post.tags ) }} </p>

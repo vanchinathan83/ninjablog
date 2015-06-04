@@ -45,6 +45,10 @@ body {
 	margin-left: 10px;
 }
 
+.errormessage {
+	color: red;
+}
+
 
 .footer {
 	font-weight: italic;

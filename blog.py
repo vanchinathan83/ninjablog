@@ -16,7 +16,7 @@ Might add more restrictions as we go forward
 '''
 @app.route('/')
 def index():
-    posts = mongo.db.posts.find()
+    posts = mongo.db.posts.find().sort('last_modified_date', -1)
     return render_template('index.html',posts=posts)
 
 @app.route('/search', methods = ['GET'])
@@ -45,10 +45,20 @@ def add_post():
         else:
             return redirect(url_for('login'))
 
-@app.route('/posts/<post_id>/edit', methods=['GET'])
+@app.route('/posts/<post_id>/edit', methods=['GET','POST'])
 def edit_posts(post_id):
-    post = mongo.db.posts.find_one_or_404({'_id': ObjectId(post_id)})
-    return render_template('edit.html',post = post)
+    if request.method == 'GET':
+        post = mongo.db.posts.find_one_or_404({'_id': ObjectId(post_id)})
+        return render_template('edit.html',post = post)
+    elif request.method == 'POST':
+        blog_post = post.Post(request.form['title'],request.form['content'],request.form['tags'].split(' '),request.form['author'])
+        result = mongo.db.posts.update({'_id' : post_id}, { json.loads(blog_post.get_json_string())})
+        if result.nModified > 0:
+            return redirect('/')
+        else:
+            return render_template('edit.html', post = post, message= "There was a error editing the post!! Please try again!!")
+
+
 
 @app.route('/login/',methods=['GET','POST'])
 def login():
