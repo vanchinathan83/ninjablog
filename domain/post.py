@@ -8,8 +8,8 @@ class Post:
 		self.content = content
 		self.tags = tags
 		self.author = author
-		self.create_date = int(datetime.datetime.now().strftime("%s")) * 1000 
-		self.last_modified_date = int(datetime.datetime.now().strftime("%s")) * 1000 
+		self.create_date = datetime.date.today().strftime("%B %d, %Y")
+		self.last_modified_date = datetime.date.today().strftime("%B %d, %Y")
 
 	def get_json_string(self):
 		return json.dumps(self.__dict__)
