@@ -4,7 +4,7 @@
 <b> Hello </b>
 <form action='/posts/' method='POST'>
     <p> {{ input('title','text','','Title') }} </p>
-    <p> {{ input('content', 'text','','Content',size=200) }} </p>
+    <p> <textarea name='content' rows='10' cols='150' placeholder="Content"></textarea></p>
     <p> {{ input('tags','text','','Tags') }} </p>
     <p> {{ input('author','text','','Author') }} </p>  
     <p> <input type="submit" value="Post"></p>
