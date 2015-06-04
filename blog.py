@@ -48,12 +48,15 @@ def add_post():
 @app.route('/posts/<post_id>/edit', methods=['GET','POST'])
 def edit_posts(post_id):
     if request.method == 'GET':
-        post = mongo.db.posts.find_one_or_404({'_id': ObjectId(post_id)})
-        return render_template('edit.html',post = post)
+        blog_post = mongo.db.posts.find_one_or_404({'_id': ObjectId(post_id)})
+        return render_template('edit.html',post = blog_post)
     elif request.method == 'POST':
+        print "Hello"
         blog_post = post.Post(request.form['title'],request.form['content'],request.form['tags'].split(' '),request.form['author'])
-        result = mongo.db.posts.update({'_id' : post_id}, { json.loads(blog_post.get_json_string())})
-        if result.nModified > 0:
+        print blog_post
+        result = mongo.db.posts.update({'_id' : ObjectId(post_id)}, json.loads(blog_post.get_json_string()))
+        print result
+        if result.get('nModified') > 0:
             return redirect('/')
         else:
             return render_template('edit.html', post = post, message= "There was a error editing the post!! Please try again!!")
@@ -95,7 +98,7 @@ Something to think about
 def posts(post_id):
     if request.method == 'GET':
         post = mongo.db.posts.find_one_or_404({'_id':ObjectId(post_id)})
-        return render_template('view.html', post = post)
+        return render_template('view.html', post = post, logged_in=session['logged_in'])
     elif request.method == 'DELETE':
         try:
             result = mongo.db.posts.remove({ '_id' : ObjectId(post_id)})
