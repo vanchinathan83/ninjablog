@@ -9,7 +9,7 @@
 		<form method='POST'>
 	    	<p> {{ input('title', 'text',post.title ) }} </p>
 	    	<p> <textarea name='content' rows='10' cols='150'>{{ post.content }}</textarea></p>
-	    	<p> {{ input('tags', 'text', post.tags ) }} </p>
+	    	<p> {{ input('tags', 'text', post.tags|join(',') ) }} </p>
 	    	<p> {{ input('author', 'text',post.author ) }} </p>  
 	    	<p> <input type="submit" value="Post"></p>
 		</form>

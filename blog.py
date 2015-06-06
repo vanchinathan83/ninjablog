@@ -39,7 +39,7 @@ def add_post():
             return redirect(url_for('login'))
     else:
         if session.get('logged_in'):
-            blog_post = post.Post(request.form['title'],request.form['content'],request.form['tags'].split(' '),request.form['author'])
+            blog_post = post.Post(request.form['title'],request.form['content'],request.form['tags'].split(','),request.form['author'])
             mongo.db.posts.insert(json.loads(blog_post.get_json_string()))
             return redirect('/')
         else:
@@ -52,7 +52,7 @@ def edit_posts(post_id):
         return render_template('edit.html',post = blog_post)
     elif request.method == 'POST':
         print "Hello"
-        blog_post = post.Post(request.form['title'],request.form['content'],request.form['tags'].split(' '),request.form['author'])
+        blog_post = post.Post(request.form['title'],request.form['content'],request.form['tags'].split(','),request.form['author'])
         print blog_post
         result = mongo.db.posts.update({'_id' : ObjectId(post_id)}, json.loads(blog_post.get_json_string()))
         print result
