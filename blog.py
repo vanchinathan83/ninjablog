@@ -118,7 +118,7 @@ def show_the_post_form():
     return render_template('post.html',session=session)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0')
 
 
 
